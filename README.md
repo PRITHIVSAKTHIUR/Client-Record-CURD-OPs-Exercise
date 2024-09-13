@@ -1,6 +1,8 @@
 ## CRUD Operation Using Blazor Web Assembly with Standalone App  - WebAPI ASP.NET - SQL Server 
 
 
+Download .NET Framework [ LTS ] : https://dotnet.microsoft.com/en-us/download/dotnet-framework
+
  Build beautiful web apps with Blazor : https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor
 
 ASP.NET MVC Controller Overview (C#) : https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/controllers-and-routing/aspnet-mvc-controllers-overview-cs
@@ -10,6 +12,8 @@ ASP.NET Core Blazor data binding : https://learn.microsoft.com/en-us/aspnet/core
 ASP.NET Core Blazor forms overview : https://learn.microsoft.com/en-us/aspnet/core/blazor/forms/?view=aspnetcore-8.0&WT.mc_id=dotnet-35129-website
 
 ASP.NET Core Razor component rendering : https://learn.microsoft.com/en-us/aspnet/core/blazor/components/rendering?view=aspnetcore-8.0
+
+Read Docs : https://learn.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-8.0&WT.mc_id=dotnet-35129-website
 
 
 
