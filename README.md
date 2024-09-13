@@ -1,4 +1,4 @@
-## CRUD Operation Using Blazor Server - WebAPI ASP.NET - SQL Server 
+## CRUD Operation Using Blazor Web Assembly with Standalone App  - WebAPI ASP.NET - SQL Server 
 
 
 ASP.NET Core Blazor data binding : https://learn.microsoft.com/en-us/aspnet/core/blazor/components/data-binding?view=aspnetcore-8.0&WT.mc_id=dotnet-35129-website
