@@ -1,0 +1,29 @@
+﻿@page "/Clients/Delete/{Id:int}"
+
+
+<h1 class="mb-3">Delete Client</h1>
+<p>Make sure to delete the client with Id @Id?</p>
+<button class="btn btn-danger" @onclick="DeleteClient">Delete</button>
+<a class="btn btn-secondary" href="/clients">Cancel</a>
+
+@inject HttpClient http
+@inject NavigationManager navManager
+@code {
+
+
+    [Parameter]
+    public int Id { set; get; }
+
+    protected async Task DeleteClient()
+    {
+
+        var response = await http.DeleteAsync("https://localhost:4000/api/Clients/" + Id);
+        navManager.NavigateTo("/Clients");
+
+    }
+
+
+
+
+
+}

@@ -1,0 +1,66 @@
+﻿@page "/Clients"
+@using BlazorApp.Models
+
+<h1 class="text-center mb-3">Clients List</h1>
+
+<a class="btn btn-primary mb-3" href="/Clients/Create">New Client</a>
+
+@if (clients == null)
+
+{    
+    <p><em>Looking for the Client Records 📄....</em></p>
+}
+
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>CreateAt</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in clients)
+            {
+                <tr>
+                    <td>@client.Id</td>
+                    <td>@(client.FirstName + " " + client.LastName)</td>
+                    <td>@client.Email</td>
+                    <td>@client.Phone</td>
+                    <td>@client.Address</td>
+                    <td>@client.Status</td>
+                    <td>@client.CreateAt.ToShortDateString()</td>
+                    <td style="white-space:nowrap">
+                        <a class="btn btn-primary btn-sm" href="/Clients/Edit/@client.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="/Clients/Delete/@client.Id">Delete</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+
+@* Https Request from the Service Container -- Injection *@
+
+@inject HttpClient Http
+@code {
+    private List<Client>? clients;
+    protected override async Task OnInitializedAsync()
+    {
+        clients = await Http.GetFromJsonAsync<List<Client>>("https://localhost:4000/api/Clients");
+
+    }
+
+
+}
+
+

@@ -1,0 +1,178 @@
+﻿@page "/Clients/Edit/{Id:int}"
+@using BlazorApp.Models
+@using System.Text.Json.Nodes
+
+<div class="row">
+    <div class="col-lg-8">
+        <h1 class="mb-5">Edit Client</h1>
+
+        @if(client == null)
+        {
+            <p><em>Looking for the Client Records .... ��</em></p>
+        }
+        else
+        {
+
+            @* Client ID - R only *@
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">Client ID</label>
+                <div class="col-md-8">
+                    <input class="form-control-plaintext" value="@Id" readonly>
+                </div>
+            </div>
+
+            @* First Name *@
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">First Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" @bind="ClientData.FirstName">
+                    <span class="text-danger">@Errors["FirstName"]?[0]</span>
+                </div>
+            </div>
+
+            @* Last Name *@
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">Last Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" @bind="ClientData.LastName">
+                    <span class="text-danger">@Errors["LastName"]?[0]</span>
+                </div>
+            </div>
+
+            @* Email *@
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">Email</label>
+                <div class="col-md-8">
+                    <input class="form-control" @bind="ClientData.Email">
+                    <span class="text-danger">@Errors["Email"]?[0]</span>
+                </div>
+            </div>
+
+
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">Phone</label>
+                <div class="col-md-8">
+                    <input class="form-control" @bind="ClientData.Phone">
+                    <span class="text-danger">@Errors["Phone"]?[0]</span>
+                </div>
+            </div>
+
+            @* Address *@
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">Address</label>
+                <div class="col-md-8">
+                    <input class="form-control" @bind="ClientData.Address">
+                    <span class="text-danger">@Errors["Address"]?[0]</span>
+                </div>
+            </div>
+
+            @* Status *@
+
+            <div class="row mb-3">
+                <label class="col-md-4 col-form-label">Status</label>
+                <div class="col-md-8">
+                    <select class="form-select" @bind="ClientData.Status">
+                        <option value='New'>New</option>
+                        <option value='Permanent'>Permanent</option>
+                        <option value='Lead'>Lead</option>
+                        <option value='Occasional'>Occasional</option>
+                        <option value='Inactive'>Inactive</option>
+                    </select>
+                    <span class="text-danger">@Errors["Status"]?[0]</span>
+                </div>
+            </div>
+
+            @* Property Val Submit/Cancel *@
+
+            <div class="row">
+                <div class="offset-md-4 col-md-4 d-grid">
+                    @* Method for Save Client *@
+                    <button class="btn btn-primary" @onclick="SaveClient">Submit</button>
+                </div>
+
+                <div class="col-md-4 d-grid">
+                    <button class="btn btn-outline-primary" href="/Clients">Cancel</button>
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+
+
+
+@inject HttpClient http
+@inject NavigationManager navManager
+@code {
+
+    [Parameter] /* -- intialized form the parameter of the Clients API Route URI */
+    public int Id { set; get; }
+    public Client? client = null;  
+    public ClientDto ClientData { set; get; } = new();
+    public JsonNode Errors { set; get; } = new JsonObject();
+
+
+    protected override async Task OnParametersSetAsync()
+
+    {
+        try
+        {
+            client = await http.GetFromJsonAsync<Client>("https://localhost:4000/api/Clients/" + Id);
+            ClientData.FirstName = client?.FirstName ?? "";
+            ClientData.LastName = client?.LastName ?? "";
+            ClientData.Email = client?.Email ?? "";
+            ClientData.Phone = client?.Phone ?? "";
+            ClientData.Address = client?.Address ?? "";
+
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine("Exception : " + ex.Message);
+            
+        }
+    }
+
+
+
+
+    // @onclick="SaveClient"
+    protected async Task SaveClient()
+    {
+        var response = await http.PutAsJsonAsync("https://localhost:4000/api/Clients/" + Id, ClientData);
+
+        if (response.IsSuccessStatusCode)
+        {
+            //Client List --- Nav
+            navManager.NavigateTo("/Clients");
+        }
+        else
+        {
+            var strResponse = await response.Content.ReadAsStringAsync();
+            // Console.WriteLine("Json Response: \n" + strResponse);
+
+            try
+            {
+                var jsonResponse = JsonNode.Parse(strResponse);
+                Errors = jsonResponse?["errors"] ?? new JsonObject();
+            }
+            catch (Exception ex)
+
+            {
+                Console.WriteLine("Exception : " + ex.Message);
+            }
+        }
+    }
+
+
+
+}

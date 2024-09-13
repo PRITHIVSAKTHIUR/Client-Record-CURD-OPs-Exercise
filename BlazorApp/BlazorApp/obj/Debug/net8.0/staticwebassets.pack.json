@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\obj\\Debug\\net8.0\\compressed\\298v5zueb1.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp.styles.css",
+      "PackagePath": "staticwebassets\\BlazorApp.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\prith\\source\\repos\\WebAPI\\BlazorApp\\BlazorApp\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BlazorApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BlazorApp.props",
+      "PackagePath": "build\\BlazorApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BlazorApp.props",
+      "PackagePath": "buildMultiTargeting\\BlazorApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BlazorApp.props",
+      "PackagePath": "buildTransitive\\BlazorApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

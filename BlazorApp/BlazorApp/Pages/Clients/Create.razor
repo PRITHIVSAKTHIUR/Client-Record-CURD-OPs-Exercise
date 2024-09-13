@@ -1,0 +1,137 @@
+﻿@page "/Clients/Create"
+@using BlazorApp.Models
+
+<div class="row">
+    <div class="clo-lg-8">
+        <h1 class="mb-5">New Client</h1>
+
+        @* First Name *@
+
+        <div class="row mb-3">
+            <label class="col-md-4 col-form-label">First Name</label>
+            <div class="col-md-8">
+                <input class="form-control" @bind="ClientData.FirstName">
+                <span class="text-danger">@Errors["FirstName"]?[0]</span>
+            </div>
+        </div>
+
+        @* Last Name *@
+
+        <div class="row mb-3">
+            <label class="col-md-4 col-form-label">Last Name</label>
+            <div class="col-md-8">
+                <input class="form-control" @bind="ClientData.LastName">
+                <span class="text-danger">@Errors["LastName"]?[0]</span>
+            </div>
+        </div>
+
+        @* Email *@
+
+        <div class="row mb-3">
+            <label class="col-md-4 col-form-label">Email</label>
+            <div class="col-md-8">
+                <input class="form-control" @bind="ClientData.Email">
+                <span class="text-danger">@Errors["Email"]?[0]</span>
+            </div>
+        </div>
+
+
+
+        <div class="row mb-3">
+            <label class="col-md-4 col-form-label">Phone</label>
+            <div class="col-md-8">
+                <input class="form-control" @bind="ClientData.Phone">
+                <span class="text-danger">@Errors["Phone"]?[0]</span>
+            </div>
+        </div>
+
+        @* Address *@
+
+        <div class="row mb-3">
+            <label class="col-md-4 col-form-label">Address</label>
+            <div class="col-md-8">
+                <input class="form-control" @bind="ClientData.Address">
+                <span class="text-danger">@Errors["Address"]?[0]</span>
+            </div>
+        </div>
+
+        @* Status *@
+
+        <div class="row mb-3">
+            <label class="col-md-4 col-form-label">Status</label>
+            <div class="col-md-8">
+                <select class="form-select" @bind="ClientData.Status">
+                    <option value='New'>New</option>
+                    <option value='Permanent'>Permanent</option>
+                    <option value='Lead'>Lead</option>
+                    <option value='Occasional'>Occasional</option>
+                    <option value='Inactive'>Inactive</option>
+                </select>
+                <span class="text-danger">@Errors["Status"]?[0]</span>
+            </div>
+        </div>
+
+        @* Property Val Submit/Cancel *@
+
+        <div class="row">
+            <div class="offset-md-4 col-md-4 d-grid">
+                @* Method for Save Client *@
+                <button class="btn btn-primary" @onclick="SaveClient">Submit</button>
+            </div>
+
+            <div class="col-md-4 d-grid">
+                <button class="btn btn-outline-primary" href="/Clients">Cancel</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@* Request for Http, NavM *@
+@inject HttpClient Http
+@inject NavigationManager navManager
+
+@using System.Text.Json.Nodes
+
+@code {
+    public ClientDto ClientData { set; get; } = new();
+    public JsonNode Errors { set; get; } = new JsonObject();
+
+    protected async Task SaveClient()
+    {
+
+        var response = await Http.PostAsJsonAsync("https://localhost:4000/api/Clients", ClientData);
+
+        if (response.IsSuccessStatusCode)
+        {
+            //Client List --- Nav
+            navManager.NavigateTo("/Clients");
+        }
+        else
+        {
+            var strResponse = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Json Response: \n" + strResponse);
+
+            try
+            {
+
+                var jsonResponse = JsonNode.Parse(strResponse);
+                Errors = jsonResponse?["errors"] ?? new JsonObject();
+            }
+            catch (Exception ex)
+
+            {
+
+                Console.WriteLine("Exception : " +  ex.Message);
+
+
+            }
+
+
+
+        }
+    }
+
+
+}
