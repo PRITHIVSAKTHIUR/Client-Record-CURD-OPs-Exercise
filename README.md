@@ -161,6 +161,8 @@ Blazor includes rich support for forms, making it easy to handle form submission
 
 Blazor forms support antiforgery token generation, ensuring secure form submissions.
 
+![Image 8](assets/2222.png)
+
 ---
 
 For more details, refer to the official [ASP.NET Core Blazor documentation](https://docs.microsoft.com/aspnet/core/blazor).
